@@ -22,15 +22,14 @@ def cut_image(img, dimensions, outputFile):
         sys.exit('Too mamy args given with "cut" flag')
     if len(dimensions) == 0:
         rows = columns = 2
-    if len(dimensions) == 1:
+    elif len(dimensions) == 1:
         rows = columns = dimensions[0]
     else:
         columns = dimensions[0]
         rows = dimensions[1]
     width, height = img.size
-    print(width, height, columns, rows)
     if width/height != columns/rows:
-        print("Height and width of input image are not equal so the resulting cut images won't fit well together in a giga emoji.")
+        print("Ratio of the height and width of input image (%d, %d) not equal to ratio of desired rows and columns (%d, %d)." % (height, width, rows, columns))
         print("Continue anyway? y/n")
         inp = input()
         if ['y', 'Y'].count(inp) != 1:
@@ -39,3 +38,9 @@ def cut_image(img, dimensions, outputFile):
         for x in range(columns):
             tempImg = img.crop((x * (width/columns), y * (height/rows), (x+1) * (width/columns), (y+1) * (height/rows)))
             tempImg.save(outputFile + "_" + str(x) + "_" + str(y) + ".png")
+
+def open_img_file(inputf):
+    try:
+        return Image.open(inputf)
+    except IOError:
+        sys.exit("Error: file %s not found" % inputf)
