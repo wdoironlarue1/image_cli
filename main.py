@@ -1,6 +1,3 @@
-#I want to take in an image and allow the user to choose from multiple options such as
-#transpose, grayscale, compress, extract, maybe more
-
 import argparse
 from PIL import Image
 import sys
@@ -8,7 +5,6 @@ import image_processing
 import bulk_logo_add
 
 def initParser(parser):
-    parser.add_argument('-if', '--inputf', type=str, help="input file path")
     parser.add_argument('-of', '--outputf', type=str, help="output file name, overwrites input file if ommitted")
     parser.add_argument('-vt', '--verticalTranspose', action='store_true', help="flip the image vertically")
     parser.add_argument('-ht', '--horizontalTranspose', action='store_true', help="flip the image horizontally")
@@ -16,6 +12,7 @@ def initParser(parser):
     parser.add_argument('-gs', '--grayscale', action='store_true', help="make the image grayscale")
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-bl', '--bulkLogoAdd', nargs='*', help="Add a logo to all the images in a folder. First arg is the folder path, second arg is the logo file path, third arg is output folder path (will output to ./output/ if ommitted), fourth arg is the max ratio of the logo to the image that it's being placed on(.5 if ommitted).")
+    group.add_argument('-if', '--inputf', type=str, help="input file path")
     return parser.parse_args()
 
 def main():
@@ -36,7 +33,6 @@ def main():
             img.save(outputf)
     elif args.bulkLogoAdd != None:
         bulk_logo_add.bulk_add_logo(args.bulkLogoAdd)
-        #bulk logo add
     else:
         parser.print_help()
     
