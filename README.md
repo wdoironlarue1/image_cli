@@ -27,6 +27,6 @@ if the image aspect ratio doesn't match the ratio of the given dimensions, a pro
 eg. we can turn a beloved meme: <br/>
 <img src="./example_images/big-chungus.png" width="100"> <br/>
 into a large emoji in slack: <br/>
-<img src="./example_images/big emoji.PNG" width="200">
+<img src="./example_images/big emoji.PNG" width="200"> <br/>
 there are also tags such as `-vt` and `-ht` that vertically and horizontally transpose the image, respectively, and `-gs` which turns the image to grayscale <br/>
 a list and explanation of all the tags and arguments can be seen by running `python main.py -h` to see the help text
