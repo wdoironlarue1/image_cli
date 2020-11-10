@@ -2,7 +2,7 @@
 
 CLI written in Python that allows a user to alter images
 
-main functions: <br />
+### main functions: <br />
 **1** - Add a given image (like a logo) to the bottom right of all images within a given directory <br />
 takes up to 4 arguments <br/>
 call it like: `python main.py -bl <image_folder> <logo> <output_folder> .5` <br/>
