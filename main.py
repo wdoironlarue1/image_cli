@@ -4,14 +4,14 @@ import image_processing
 import bulk_logo_add
 
 def initParser(parser):
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('-if', '--inputf', type=str, help="input file path")
     parser.add_argument('-of', '--outputf', type=str, help="output file path, overwrites input file if ommitted")
     parser.add_argument('-vt', '--verticalTranspose', action='store_true', help="flip the image vertically")
     parser.add_argument('-ht', '--horizontalTranspose', action='store_true', help="flip the image horizontally")
     parser.add_argument('-c', '--cut', nargs='*', type=int, help="Cut the image into smaller pieces. If no values are given, make the image into a 2x2 square. If one value (N) is given, make it onto a NxN square, If two values (N, M) are given, make it into a NxM quad.")
     parser.add_argument('-gs', '--grayscale', action='store_true', help="make the image grayscale")
-    group = parser.add_mutually_exclusive_group()
     group.add_argument('-bl', '--bulkLogoAdd', nargs='*', help="Add a logo to all the images in a folder. First arg is the folder path, second arg is the logo file path, third arg is output folder path (will output to ./output/ if ommitted), fourth arg is the max ratio of the logo to the image that it's being placed on(.5 if ommitted).")
-    group.add_argument('-if', '--inputf', type=str, help="input file path")
     return parser.parse_args()
 
 def main():
