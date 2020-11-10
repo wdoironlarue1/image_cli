@@ -3,6 +3,7 @@ import numpy as np
 import sys
 import matplotlib.pyplot as plt
 import io
+import os
 
 def img_to_grayscale(img):
     arr = np.array(img.convert('L'))
@@ -18,6 +19,7 @@ def img_to_grayscale(img):
     return Image.open(buf)
 
 def cut_image(img, dimensions, outputFile):
+    outputFile = os.path.splitext(outputFile)[0]
     if len(dimensions) > 2:
         sys.exit('Too mamy args given with "cut" flag')
     if len(dimensions) == 0:

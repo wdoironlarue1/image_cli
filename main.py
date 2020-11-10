@@ -1,11 +1,10 @@
 import argparse
 from PIL import Image
-import sys
 import image_processing
 import bulk_logo_add
 
 def initParser(parser):
-    parser.add_argument('-of', '--outputf', type=str, help="output file name, overwrites input file if ommitted")
+    parser.add_argument('-of', '--outputf', type=str, help="output file path, overwrites input file if ommitted")
     parser.add_argument('-vt', '--verticalTranspose', action='store_true', help="flip the image vertically")
     parser.add_argument('-ht', '--horizontalTranspose', action='store_true', help="flip the image horizontally")
     parser.add_argument('-c', '--cut', nargs='*', type=int, help="Cut the image into smaller pieces. If no values are given, make the image into a 2x2 square. If one value (N) is given, make it onto a NxN square, If two values (N, M) are given, make it into a NxM quad.")
@@ -28,14 +27,13 @@ def main():
         if args.grayscale:
             img = image_processing.img_to_grayscale(img)
         if args.cut != None:
-            image_processing.cut_image(img, args.cut, outputf.split(".")[0])
+            image_processing.cut_image(img, args.cut, outputf)
         else:
             img.save(outputf)
     elif args.bulkLogoAdd != None:
         bulk_logo_add.bulk_add_logo(args.bulkLogoAdd)
     else:
         parser.print_help()
-    
 
 if __name__ == '__main__':
     main()
